@@ -23,6 +23,21 @@ Jadi, secara keseluruhan, step yang dilakukan di sini adalah:
 o --> [Corr] --> Loop([Model] --> [Metrics] --> [Tuning]) --> Reporting
 ```
 
+## **Cara menjalankan Program**
+``` shell
+git clone https://github.com/nurrasyid14/MLOps-Midterm.git
+# Linux :
+chmod +x setup_venv.sh
+chmod +x run_pycaret.sh
+
+./setup_venv.sh
+./run_pycaret.sh automl_run.py
+
+# Windows
+./setup_venv.ps1
+./run_pycaret.ps1 automl_run.py
+```
+
 ## **Results**
 
 ### **AutoML -- PyCaret**
