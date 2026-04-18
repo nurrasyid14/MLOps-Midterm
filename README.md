@@ -1,5 +1,11 @@
 # **Midterm MLOps**
-
+``` Identity
+Name     : Muhamad Nur Rasyid
+NRP      : 3324600018
+Class    : 2 D4 SDT-A
+Lecturer : Renovita Edelani S.Kom, M.Tr.Kom.
+Topic    : MLOps Midterm -- Regression
+```
 ## **Overview**
 Data yang saya gunakan adalah data tentang Kualitas Beton (Concrete) yang dimana ia memiliki 9 kolom (8X, 1y)
 ``` cols
