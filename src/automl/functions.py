@@ -21,7 +21,6 @@ class AutoMLFunctions:
             data=df,
             target=self.target_column,
             session_id=self.session_id,
-            silent=True,
             verbose=False
         )
 
