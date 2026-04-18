@@ -23,7 +23,7 @@ Jadi, secara keseluruhan, step yang dilakukan di sini adalah:
 o --> [Corr] --> Loop([Model] --> [Metrics] --> [Tuning]) --> Reporting
 ```
 
-## **Cara menjalankan Program**
+## **Cara menjalankan Program (PyCaret)**
 ``` shell
 git clone https://github.com/nurrasyid14/MLOps-Midterm.git
 # Linux :
