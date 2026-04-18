@@ -27,16 +27,23 @@ then
 fi
 
 echo "=== Creating virtual environment ==="
-$PYTHON_BIN -m venv $VENV_NAME
+if [ ! -d "$VENV_NAME" ]; then
+    $PYTHON_BIN -m venv $VENV_NAME
+else
+    echo "Venv already exists, skipping creation"
+fi
 
 echo "=== Activating venv ==="
 source $VENV_NAME/bin/activate
 
 echo "=== Upgrading pip ==="
-pip install --upgrade pip
+pip install --upgrade pip setuptools wheel
 
-echo "=== Installing PyCaret ==="
-pip install pycaret
+echo "=== Installing dependencies ==="
+pip install -r requirements.txt
+
+echo "=== Installing PyCaret (safe mode) ==="
+pip install pycaret[full]
 
 echo "=== Installation complete ==="
 
