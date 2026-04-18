@@ -22,3 +22,20 @@ Jadi, secara keseluruhan, step yang dilakukan di sini adalah:
 [Data] --> [Cleaning] --> [Split] --> [Normalisasi] --> o
 o --> [Corr] --> Loop([Model] --> [Metrics] --> [Tuning]) --> Reporting
 ```
+
+## **Results**
+
+### **AutoML -- PyCaret**
+``` json
+[
+    {
+        "alpha": "LGBMRegressor(n_jobs=-1, random_state=42)",
+        "RMSE": 4.630507066132197,
+        "MAE": 3.0779451551443158,
+        "R2": 0.9167901843668548
+    }
+]
+```
+![AutoML Result](results/pred_vs_actual_auto1.png)
+![AutoML Result](results/residuals_auto1.png)
+
