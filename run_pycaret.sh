@@ -3,14 +3,20 @@
 set -e
 
 VENV_NAME="pycaret-env"
+VENV_PY="$VENV_NAME/bin/python"
 
 if [ ! -d "$VENV_NAME" ]; then
     echo "Virtual environment not found. Run setup_venv.sh first."
     exit 1
 fi
 
-echo "=== Activating venv ==="
-source $VENV_NAME/bin/activate
+if [ ! -f "$VENV_PY" ]; then
+    echo "Python binary not found in venv."
+    exit 1
+fi
+
+echo "=== Using Python from venv ==="
+$VENV_PY --version
 
 caretrun () {
     if [ -z "$1" ]; then
@@ -26,7 +32,7 @@ caretrun () {
     fi
 
     echo "=== Running $SCRIPT_PATH inside PyCaret env ==="
-    python "$SCRIPT_PATH"
+    $VENV_PY "$SCRIPT_PATH"
 }
 
 if [ -n "$1" ]; then
@@ -34,5 +40,3 @@ if [ -n "$1" ]; then
 else
     echo "Usage: ./run_pycaret.sh script.py"
 fi
-
-deactivate
