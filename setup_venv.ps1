@@ -39,6 +39,7 @@ python -m pip install --upgrade pip
 
 Write-Host "=== Installing PyCaret ==="
 pip install pycaret
+pip install xlrd
 
 Write-Host "=== Setup Complete (Python 3.10 enforced) ==="
 
