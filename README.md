@@ -11,7 +11,7 @@ Topic    : MLOps Midterm -- Regression
 
 ### **Tree**
 ```
-MLOps-Midterm mymacbook$ tree
+MLOps-Midterm
 .
 ├── README.md
 ├── __init__.py
