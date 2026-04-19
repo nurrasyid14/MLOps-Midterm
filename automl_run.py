@@ -9,7 +9,7 @@ def main():
 
     # run AutoML
     pipeline = AutoMLPipeline(
-        target_column="Concrete compressive strength(MPa, megapascals) "
+        target_column="strength"  # sesuaikan
     )
 
     results = pipeline.run(df)

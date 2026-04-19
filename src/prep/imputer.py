@@ -7,9 +7,10 @@ class DataImputer:
         self.categorical_cols = []
 
     def fit(self, df: pd.DataFrame):
-        self.numeric_cols = df.select_dtypes(include=["int64", "float64"]).columns
+        self.numeric_cols = df.select_dtypes(include=["number"]).columns
         self.categorical_cols = df.select_dtypes(include=["object", "category"]).columns
 
+        # numerik
         self.means = df[self.numeric_cols].mean()
 
         # handle kalau tidak ada kolom kategorik
