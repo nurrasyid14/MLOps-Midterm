@@ -78,7 +78,7 @@ class ManualPipeline:
 
         results_per_model = {}
         logs = []
-
+        predictions = {}
         for model_name, config in model_space.items():
             ModelClass = config["model"]
 
@@ -120,37 +120,66 @@ class ManualPipeline:
             }
 
         # simpan log
+        logger.logs = logs
         logger.save()
-        logs = logger.get_logs()
 
-        # 6. Final Model
-        y_pred = best_model.predict(X_test)
+        # 2 prediksi 
+        predictions = {}
 
-        # 7. Final Metrics
-        final_metrics = RegressionMetrics(y_test, y_pred).get_all_metrics()
+        for model_name, info in results_per_model.items():
+            ModelClass = model_space[model_name]["model"]
 
-        # 8. Visual
-        viz = Visualizer()
+            model = ModelClass(**info["best_params"])
+            model.train(X_train, y_train)
 
-        viz.plot_pred_vs_actual(y_test, y_pred)
-        viz.plot_residuals(y_test, y_pred)
+            y_pred = model.predict(X_test)
 
-        # ridge plot alpha
+            metrics = RegressionMetrics(y_test, y_pred)
+
+            predictions[model_name] = {
+                "metrics": metrics.get_all_metrics(),
+                "y_pred": y_pred
+            }
+
+        # 7. Visualisasi
+        viz = Visualizer(base_path="results/manuals", run_id=run_id)
+
+        for model_name, pred in predictions.items():
+            viz.plot_pred_vs_actual(
+                y_test,
+                pred["y_pred"],
+                filename=f"{model_name}_pred_vs_actual.png"
+            )
+
+            viz.plot_residuals(
+                y_test,
+                pred["y_pred"],
+                filename=f"{model_name}_residuals.png"
+            )
+
+        # khusus ridge → alpha plot
         ridge_logs = [log for log in logs if log["model"] == "ridge"]
 
         if ridge_logs:
             alphas = [log["params"]["alpha"] for log in ridge_logs]
             rmse = [log["RMSE"] for log in ridge_logs]
-            viz.plot_alpha_vs_error(alphas, rmse)
 
+            viz.plot_alpha_vs_error(
+                alphas,
+                rmse,
+                filename="ridge_alpha_vs_error.png"
+            )
+
+        # 8. best_alpha Ridge
         best_alpha = None
-        if best_config["model"] == "ridge":
-            best_alpha = best_config["params"].get("alpha")
+        if "ridge" in results_per_model:
+            best_alpha = results_per_model["ridge"]["best_params"].get("alpha")
 
         return {
-            "best_model": best_config["model"],
-            "best_params": best_config["params"],
+            "models": results_per_model,
+            "predictions": {
+                k: v["metrics"] for k, v in predictions.items()
+            },
             "best_alpha": best_alpha,
-            "tuning_logs": logs,
-            "final_metrics": final_metrics
+            "tuning_logs": logs
         }
