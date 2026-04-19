@@ -150,8 +150,8 @@ python manuals_run.py
 ]
 ```
 
-![AutoML Result](../results/automl/20260419_221928_pred_vs_actual.png)
-![AutoML Result](../results/automl/20260419_221928_pred_vs_actual.png)
+![AutoML Result](results/automl/20260419_221928_pred_vs_actual.png)
+![AutoML Result](results/automl/20260419_221928_pred_vs_actual.png)
 
 #### **Analisis**
 
@@ -367,12 +367,12 @@ Maka, tahap selanjutnya adalah "Build from scratch" yang dimana saya akan mengam
 ]
 ```
 - Ridge
-![Ridge Result](../results/manuals/20260420_000032_ridge_pred_vs_actual.png)
-![Ridge Residual](../results/manuals/20260420_000032_ridge_residuals.png)
-![Alpha v Error](../results/manuals/20260420_000032_ridge_alpha_vs_error.png)
+![Ridge Result](results/manuals/20260420_000032_ridge_pred_vs_actual.png)
+![Ridge Residual](results/manuals/20260420_000032_ridge_residuals.png)
+![Alpha v Error](results/manuals/20260420_000032_ridge_alpha_vs_error.png)
 - LGBM
-![LGBM Result](../results/manuals/20260420_000032_lgbm_pred_vs_actual.png)
-![LGBM Residual](../results/manuals/20260420_000032_lgbm_residuals.png)
+![LGBM Result](results/manuals/20260420_000032_lgbm_pred_vs_actual.png)
+![LGBM Residual](results/manuals/20260420_000032_lgbm_residuals.png)
 
 **Output Terminal**
 ``` log
