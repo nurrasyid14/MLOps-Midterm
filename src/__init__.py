@@ -8,6 +8,7 @@ from .pipeline import ManualPipeline
 # from .automl
 from .manuals.corr.corr import CorrelationAnalyzer
 from .manuals.regression.ridge import RidgeModel
+from .manuals.regression.lgbm import LGBMModel
  
  
 __all__ = [
@@ -19,4 +20,5 @@ __all__ = [
     "RidgeTuner",
     "CorrelationAnalyzer",
     "RidgeModel"
+    "LGBMModel"
 ] 

@@ -7,7 +7,8 @@ from .prep.imputer import DataImputer
 from .prep.norm import MinMaxNormalizer
 
 from .manuals.regression import RidgeModel
-from .tuner import RidgeTuner
+from .tuner import ModelTuner as Tuner
+from .manuals.regression.lgbm import LGBMModel
 
 from .evals.metrics import RegressionMetrics
 from .visuals.visualizer import Visualizer
@@ -51,40 +52,61 @@ class ManualPipeline:
         X_train = normalizer.fit_transform(X_train)
         X_test = normalizer.transform(X_test)
 
-        # 5. Tuning Loop 
+        # 5. Tuning Loop
+
         import datetime
         run_id = datetime.datetime.now().strftime("%Y%m%d_%H%M%S")
-        logger = Logger(filepath=f"results/manuals/logs_{run_id}.json")
+        logger = Logger(filepath=f"results/manuals/manuallogs_{run_id}.json")
 
-        best_alpha = None
-        best_rmse = np.inf
         best_model = None
+        best_config = None
+        best_rmse = np.inf
 
-        for alpha in self.alphas:
-            model = RidgeModel(alpha=alpha)
-            model.train(X_train, y_train)
-            y_pred = model.predict(X_test)
+        model_space = {
+            "ridge": {
+                "model": RidgeModel,
+                "params": [{"alpha": alpha} for alpha in self.alphas]
+            },
+            "lgbm": {
+                "model": LGBMModel,
+                "params": [
+                    {"n_estimators": 100, "learning_rate": 0.1},
+                    {"n_estimators": 200, "learning_rate": 0.05}
+                ]
+            }
+        }
 
-            metrics = RegressionMetrics(y_test, y_pred)
-            result = metrics.get_all_metrics()
+        for model_name, config in model_space.items():
+            ModelClass = config["model"]
 
-            logger.log(alpha, result)
+            for param in config["params"]:
+                model = ModelClass(**param)
+                model.train(X_train, y_train)
+                y_pred = model.predict(X_test)
 
-            # update best
-            if result["RMSE"] < best_rmse:
-                best_rmse = result["RMSE"]
-                best_alpha = alpha
-                best_model = model
+                metrics = RegressionMetrics(y_test, y_pred)
+                result = metrics.get_all_metrics()
 
-        # simpan log ke file
+                log_entry = {
+                    "model": model_name,
+                    "params": param,
+                    "RMSE": result["RMSE"],
+                    "MAE": result["MAE"],
+                    "R2": result["R2"]
+                }
+
+                logger.logs.append(log_entry)
+
+                if result["RMSE"] < best_rmse:
+                    best_rmse = result["RMSE"]
+                    best_model = model
+                    best_config = log_entry
+
+        # simpan log
         logger.save()
-
-        # ambil log untuk visualisasi
         logs = logger.get_logs()
 
         # 6. Final Model
-        best_model = RidgeModel(alpha=best_alpha)
-        best_model.train(X_train, y_train)
         y_pred = best_model.predict(X_test)
 
         # 7. Final Metrics
@@ -96,13 +118,17 @@ class ManualPipeline:
         viz.plot_pred_vs_actual(y_test, y_pred)
         viz.plot_residuals(y_test, y_pred)
 
-        alphas = [log["alpha"] for log in logs]
-        rmse = [log["RMSE"] for log in logs]
+        # ridge plot alpha
+        ridge_logs = [log for log in logs if log["model"] == "ridge"]
 
-        viz.plot_alpha_vs_error(alphas, rmse)
+        if ridge_logs:
+            alphas = [log["params"]["alpha"] for log in ridge_logs]
+            rmse = [log["RMSE"] for log in ridge_logs]
+            viz.plot_alpha_vs_error(alphas, rmse)
 
         return {
-            "best_alpha": best_alpha,
+            "best_model": best_config["model"],
+            "best_params": best_config["params"],
             "tuning_logs": logs,
             "final_metrics": final_metrics
         }

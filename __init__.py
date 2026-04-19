@@ -9,4 +9,5 @@ __all__ = [
     "RidgeTuner",
     "CorrelationAnalyzer",
     "RidgeModel",
+    "LGBMModel"
 ]

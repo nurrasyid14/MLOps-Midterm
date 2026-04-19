@@ -60,21 +60,31 @@ class AutoMLPipeline:
         metrics = RegressionMetrics(y_true, y_pred)
         final_metrics = metrics.get_all_metrics()
 
-        # 10. Visualisasi
-        viz = Visualizer()
+        import datetime
+        run_id = datetime.datetime.now().strftime("%Y%m%d_%H%M%S")
+
+        os.makedirs("results/automl", exist_ok=True)
+
+        # Visual
+        viz = Visualizer(base_path="results/automl", run_id=run_id)
         viz.plot_pred_vs_actual(y_true, y_pred)
         viz.plot_residuals(y_true, y_pred)
 
-        # 11. Logging
-        os.makedirs("results/automl", exist_ok=True)
+        # Logging
+        logger = Logger(filepath=f"results/automl/metrics_{run_id}.json")
 
-        logger = Logger(filepath="results/automl/metrics.json")
-        logger.log(str(best_model), final_metrics)
+        log_entry = {
+            "run_id": run_id,
+            "best_model": str(best_model),
+            "metrics": final_metrics
+        }
+
+        logger.logs.append(log_entry)
         logger.save()
 
-        return {
-            "best_model": str(best_model),
-            "metrics": final_metrics,
-            "compare_table": compare_results.to_dict(),
-            "tune_table": tune_results.to_dict()
-        }
+        # Save tables
+        with open(f"results/automl/compare_{run_id}.json", "w") as f:
+            json.dump(compare_results.to_dict(), f, indent=4)
+
+        with open(f"results/automl/tune_{run_id}.json", "w") as f:
+            json.dump(tune_results.to_dict(), f, indent=4)
