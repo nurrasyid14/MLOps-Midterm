@@ -88,3 +88,10 @@ class AutoMLPipeline:
 
         with open(f"results/automl/tune_{run_id}.json", "w") as f:
             json.dump(tune_results.to_dict(), f, indent=4)
+
+        return {
+            "best_model": str(best_model),
+            "metrics": final_metrics,
+            "compare_table": compare_results.to_dict(),
+            "tune_table": tune_results.to_dict()
+        }
