@@ -399,12 +399,10 @@ Best Alpha (Ridge): 0.14384498882876628
 2. ridge → RMSE: 7.3288
 ```
 #### **Analisis**
-Sedikit lebih baik dari PyCaret, dimana di sini saya dapat mendapatkan R^2 sebesar 0.93 dalam LGBM, dan 0.79 dalam Ridge; yang saya lakukan persis dengan PyCaret, namum saya hanya menggunakan dua diantaranya. Adapun mengenai alpha pada ridge, saya menyatakan demikian: " alphas = np.logspace(-4, 1, 20)" yang maknanya adalah range dari alpha adalah:
-``` LaTeX
-# Fungsi Menghasilkan 20 nilai alpha secara logaritmik dari 10^{-4} hingga 10^{1}, dengan formula
-# \alpha_i = 10^{\, -4 + i \cdot \frac{1 - (-4)}{19}} = 10^{\, -4 + i \cdot \frac{5}{19}},
-# untuk i = 0, 1, \ldots, 19
-```
+Sedikit lebih baik dari PyCaret, dimana di sini saya dapat mendapatkan R^2 sebesar 0.93 dalam LGBM, dan 0.79 dalam Ridge; yang saya lakukan persis dengan PyCaret, namum saya hanya menggunakan dua diantaranya. Adapun mengenai alpha pada ridge, saya menyatakan demikian: " alphas = np.logspace(-4, 1, 20)" yang maknanya adalah nilai dari alpha adalah:
+
+![Alpha](equation.jpg)
+
 ---
 ## **Analisis Keseluruhan**
 
