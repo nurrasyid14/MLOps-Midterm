@@ -107,14 +107,18 @@ o --> [Corr] --> Loop([Model] --> [Metrics] --> [Tuning]) --> Reporting
 
 ## **Cara menjalankan Program (PyCaret)**
 ``` shell
+#1. Clone
 git clone https://github.com/nurrasyid14/MLOps-Midterm.git
-# Linux :
+```
+``` bash
+# 2a. Run on Linux :
 chmod +x setup_venv.sh
 chmod +x run_pycaret.sh
 
 ./setup_venv.sh
 ./run_pycaret.sh automl_run.py
-
+```
+``` PowerShell 
 # Windows
 ./setup_venv.ps1
 ./run_pycaret.ps1 automl_run.py
