@@ -6,7 +6,7 @@ __all__ = [
     "Logger",
     "DataImputer", 
     "MinMax Normalizer",
-    "RidgeTuner",
+    "ModelTuner",
     "CorrelationAnalyzer",
     "RidgeModel",
     "LGBMModel"

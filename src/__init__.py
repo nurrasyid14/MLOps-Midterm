@@ -3,7 +3,7 @@ from .visuals.visualizer import Visualizer
 from .logger.logger import Logger
 from .prep.imputer import DataImputer
 from .prep.norm import MinMaxNormalizer
-from .tuner import RidgeTuner
+from .tuner import ModelTuner
 from .pipeline import ManualPipeline
 # from .automl
 from .manuals.corr.corr import CorrelationAnalyzer
@@ -17,7 +17,7 @@ __all__ = [
     "Logger",
     "DataImputer", 
     "MinMax Normalizer",
-    "RidgeTuner",
+    "ModelTuner",
     "CorrelationAnalyzer",
     "RidgeModel"
     "LGBMModel"
