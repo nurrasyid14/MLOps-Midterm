@@ -6,7 +6,66 @@ Class    : 2 D4 SDT-A
 Lecturer : Renovita Edelani S.Kom, M.Tr.Kom.
 Topic    : MLOps Midterm -- Regression
 ```
+---
 ## **Overview**
+
+### **Tree**
+```
+MLOps-Midterm mymacbook$ tree
+.
+├── README.md
+├── __init__.py
+├── automl_run.py
+├── data
+│   └── Concrete_Data.xls
+├── manuals_run.py
+├── requirements.txt
+├── results
+│   ├── alpha_vs_error.png
+│   ├── automl
+│   │   ├── metrics.json
+│   │   └── null.json
+│   ├── logs.json
+│   ├── manuals
+│   │   ├── logs_20260419_055427.json
+│   │   └── null.json
+│   ├── pred_vs_actual_auto1.png
+│   ├── pred_vs_actual_manual.png
+│   ├── residuals_auto1.png
+│   └── residuals_manual.png
+├── run_pycaret.ps1
+├── run_pycaret.sh
+├── setup_venv.ps1
+├── setup_venv.sh
+├── setup_venv_codespace.sh
+└── src
+    ├── __init__.py
+    ├── automl
+    │   ├── __init__.py
+    │   └── functions.py
+    ├── automl_pipeline.py
+    ├── evals
+    │   ├── __init__.py
+    │   └── metrics.py
+    ├── logger
+    │   ├── __init__.py
+    │   └── logger.py
+    ├── manuals
+    │   ├── __init__.py
+    │   └── regression
+    │       ├── __init__.py
+    │       └── ridge.py
+    ├── pipeline.py
+    ├── prep
+    │   ├── __init__.py
+    │   ├── imputer.py
+    │   └── norm.py
+    ├── tuner.py
+    └── visuals
+        ├── __init__.py
+        └── visualizer.py
+```
+### **Tentang Data**
 Data yang saya gunakan adalah data tentang Kualitas Beton (Concrete) yang dimana ia memiliki 9 kolom (8X, 1y)
 ``` cols
 [
@@ -21,6 +80,22 @@ Age (day),
 Concrete compressive strength(MPa, megapascals) 
 ]
 ```
+
+| Cement (kg/m³) | Blast Furnace Slag (kg/m³) | Fly Ash (kg/m³) | Water (kg/m³) | Superplasticizer (kg/m³) | Coarse Aggregate (kg/m³) | Fine Aggregate (kg/m³) | Age (day) | Compressive Strength (MPa) |
+|----------------|----------------------------|-----------------|---------------|--------------------------|--------------------------|------------------------|-----------|-----------------------------|
+| 540.0          | 0.0                        | 0.0             | 162.0         | 2.5                      | 1040.0                   | 676.0                  | 28        | 79.99                       |
+| 540.0          | 0.0                        | 0.0             | 162.0         | 2.5                      | 1055.0                   | 676.0                  | 28        | 61.89                       |
+| 332.5          | 142.5                      | 0.0             | 228.0         | 0.0                      | 932.0                    | 594.0                  | 270       | 40.27                       |
+| 332.5          | 142.5                      | 0.0             | 228.0         | 0.0                      | 932.0                    | 594.0                  | 365       | 41.05                       |
+| 198.6          | 132.4                      | 0.0             | 192.0         | 0.0                      | 978.4                    | 825.5                  | 360       | 44.30                       |
+| 266.0          | 114.0                      | 0.0             | 228.0         | 0.0                      | 932.0                    | 670.0                  | 90        | 47.03                       |
+| 380.0          | 95.0                       | 0.0             | 228.0         | 0.0                      | 932.0                    | 594.0                  | 365       | 43.70                       |
+| 380.0          | 95.0                       | 0.0             | 228.0         | 0.0                      | 932.0                    | 594.0                  | 28        | 36.45                       |
+| 266.0          | 114.0                      | 0.0             | 228.0         | 0.0                      | 932.0                    | 670.0                  | 28        | 45.85                       |
+| 475.0          | 0.0                        | 0.0             | 228.0         | 0.0                      | 932.0                    | 594.0                  | 28        | 39.29                       |
+
+
+
 ### **Algoritma**
 Algoritma yang saya gunakan untuk data yang demikian adalah regresi Ridge, sebab semua fitur X berkorelasi untuk menghasilkan output y.
 Jadi, secara keseluruhan, step yang dilakukan di sini adalah:
@@ -28,7 +103,7 @@ Jadi, secara keseluruhan, step yang dilakukan di sini adalah:
 [Data] --> [Cleaning] --> [Split] --> [Normalisasi] --> o
 o --> [Corr] --> Loop([Model] --> [Metrics] --> [Tuning]) --> Reporting
 ```
-
+---
 
 ## **Cara menjalankan Program (PyCaret)**
 ``` shell
@@ -48,6 +123,9 @@ chmod +x run_pycaret.sh
 ``` bash
 python manuals_run.py
 ```
+
+---
+---
 
 ## **Results**
 
@@ -208,5 +286,13 @@ R2  : 0.7916
 ```
 #### **Analisis**
 
-===
+---
+---
 ## **Analisis Keseluruhan**
+
+
+## **Detail Presentasi**
+``` sequence
+[Title] - [Overview Tugas] - [Keterangan Data] - [Overview Alur Data] - o
+o -[FLow PyCaret] - [Tree] -  [Flow Manual] - [Output] - [Comparison] - [Kesimpulan]
+```
