@@ -76,8 +76,16 @@ class ManualPipeline:
             }
         }
 
+        results_per_model = {}
+        logs = []
+
         for model_name, config in model_space.items():
             ModelClass = config["model"]
+
+            model_results = []
+            best_rmse = np.inf
+            best_model = None
+            best_params = None
 
             for param in config["params"]:
                 model = ModelClass(**param)
@@ -95,12 +103,21 @@ class ManualPipeline:
                     "R2": result["R2"]
                 }
 
-                logger.logs.append(log_entry)
+                logs.append(log_entry)
+                model_results.append(log_entry)
 
+                # best per model (bukan global)
                 if result["RMSE"] < best_rmse:
                     best_rmse = result["RMSE"]
                     best_model = model
-                    best_config = log_entry
+                    best_params = param
+
+            # simpan hasil per model
+            results_per_model[model_name] = {
+                "best_params": best_params,
+                "best_rmse": best_rmse,
+                "results": model_results
+            }
 
         # simpan log
         logger.save()
@@ -129,7 +146,7 @@ class ManualPipeline:
         best_alpha = None
         if best_config["model"] == "ridge":
             best_alpha = best_config["params"].get("alpha")
-            
+
         return {
             "best_model": best_config["model"],
             "best_params": best_config["params"],
