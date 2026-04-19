@@ -155,7 +155,7 @@ python manuals_run.py
 
 #### **Analisis**
 
-Dari file log metrics di folder result, (![log](../results/automl/metrics_20260420_021013.json)), kita dapat mendapati berbagai jenis algoritma regresi dan perbandingan metriknya. Di situlah kita mendapat kesimpulan bahwa Pycaret bekerja dengan cara "Run all and Compare"; dan didapat bahwa LGBM Regressor menempati posisi terbaik dengan R^2 0.91--yang bermakna ia dapat menggeneralisasi, dan merepresentasikan 92% dari data. 
+Dari file log metrics di folder result, (![log](results/automl/metrics_20260420_021013.json)), kita dapat mendapati berbagai jenis algoritma regresi dan perbandingan metriknya. Di situlah kita mendapat kesimpulan bahwa Pycaret bekerja dengan cara "Run all and Compare"; dan didapat bahwa LGBM Regressor menempati posisi terbaik dengan R^2 0.91--yang bermakna ia dapat menggeneralisasi, dan merepresentasikan 92% dari data. 
 
 Maka, tahap selanjutnya adalah "Build from scratch" yang dimana saya akan mengamati 2 dari keseluruhan algoritma regresi, yakni Ridge, dan LGBM.
 
