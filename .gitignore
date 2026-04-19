@@ -13,7 +13,7 @@ pycaret-env/
 .env/
 venv/
 env/
-results/
+
 
 # ========================
 # Jupyter
