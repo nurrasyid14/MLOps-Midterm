@@ -52,7 +52,9 @@ class ManualPipeline:
         X_test = normalizer.transform(X_test)
 
         # 5. Tuning Loop 
-        logger = Logger()
+        import datetime
+        run_id = datetime.datetime.now().strftime("%Y%m%d_%H%M%S")
+        logger = Logger(filepath=f"results/manuals/logs_{run_id}.json")
 
         best_alpha = None
         best_rmse = np.inf
