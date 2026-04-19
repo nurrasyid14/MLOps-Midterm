@@ -29,6 +29,7 @@ Jadi, secara keseluruhan, step yang dilakukan di sini adalah:
 o --> [Corr] --> Loop([Model] --> [Metrics] --> [Tuning]) --> Reporting
 ```
 
+
 ## **Cara menjalankan Program (PyCaret)**
 ``` shell
 git clone https://github.com/nurrasyid14/MLOps-Midterm.git
@@ -65,7 +66,10 @@ python manuals_run.py
 ![AutoML Result](results/pred_vs_actual_auto1.png)
 ![AutoML Result](results/residuals_auto1.png)
 
-### **Manual**
+#### **Analisis**
+
+---
+### **Manual: Ridge**
 
 ``` json
 [
@@ -193,7 +197,7 @@ python manuals_run.py
 ```
 ![Ridge Result](results/pred_vs_actual_manual.png)
 ![Ridge Result](results/residuals_manual.png)
-![Alpha v Error](result/alpha_vs_error.png)
+![Alpha v Error](results/alpha_vs_error.png)
 
 **Output Terminal**
 ``` log
@@ -202,3 +206,7 @@ RMSE: 7.3288
 MAE : 5.8929
 R2  : 0.7916
 ```
+#### **Analisis**
+
+===
+## **Analisis Keseluruhan**
