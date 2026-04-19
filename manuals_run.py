@@ -18,8 +18,6 @@ def main():
 
     results = pipeline.run(df)
 
-    metrics = results["final_metrics"]
-
     print("\n=== MANUAL RESULTS ===")
 
     for model_name, metrics in results["predictions"].items():
@@ -40,6 +38,7 @@ def main():
 
     for i, (model, m) in enumerate(sorted_models, 1):
         print(f"{i}. {model} → RMSE: {m['RMSE']:.4f}")
+
 
 if __name__ == "__main__":
     main()
