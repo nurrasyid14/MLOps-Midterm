@@ -126,9 +126,14 @@ class ManualPipeline:
             rmse = [log["RMSE"] for log in ridge_logs]
             viz.plot_alpha_vs_error(alphas, rmse)
 
+        best_alpha = None
+        if best_config["model"] == "ridge":
+            best_alpha = best_config["params"].get("alpha")
+            
         return {
             "best_model": best_config["model"],
             "best_params": best_config["params"],
+            "best_alpha": best_alpha,
             "tuning_logs": logs,
             "final_metrics": final_metrics
         }
