@@ -97,11 +97,11 @@ Concrete compressive strength(MPa, megapascals)
 
 
 ### **Algoritma**
-Algoritma yang saya gunakan untuk data yang demikian adalah regresi Ridge, sebab semua fitur X berkorelasi untuk menghasilkan output y.
+Algoritma yang saya gunakan untuk data yang demikian adalah regresi Ridge, dan Light Gradient Boosting Machine Regressor, menyesuaikan tipe data dalam dataset yang kesemuanya numerik, dan kesemua fitur X saling terikat untuk menghasilkan output y.
 Jadi, secara keseluruhan, step yang dilakukan di sini adalah:
 ```
 [Data] --> [Cleaning] --> [Split] --> [Normalisasi] --> o
-o --> [Corr] --> Loop([Model] --> [Metrics] --> [Tuning]) --> Reporting
+o --> Loop([Model] --> [Metrics] --> [Tuning]) --> [Reporting]
 ```
 ---
 
@@ -119,7 +119,7 @@ chmod +x run_pycaret.sh
 ./run_pycaret.sh automl_run.py
 ```
 ``` PowerShell 
-# Windows
+# 2b. Run on Windows
 ./setup_venv.ps1
 ./run_pycaret.ps1 automl_run.py
 ```
@@ -132,6 +132,8 @@ python manuals_run.py
 ---
 
 ## **Results**
+
+Hasil dari runtime akan segera disimpan dalam folder results, nama file akan menyesuaikan datetime sehingga nama file dapat dipastikan tidak akan ada duplikasi, adapun output akan berupa file file png hasil visualisasi, dan json untuk hasil evaluasi metrik, dan laporan log lainnya.
 
 ### **AutoML -- PyCaret**
 
