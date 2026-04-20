@@ -97,11 +97,11 @@ Concrete compressive strength(MPa, megapascals)
 
 
 ### **Algoritma**
-Algoritma yang saya gunakan untuk data yang demikian adalah regresi Ridge, sebab semua fitur X berkorelasi untuk menghasilkan output y.
+Algoritma yang saya gunakan untuk data yang demikian adalah regresi Ridge, dan Light Gradient Boosting Machine Regressor, menyesuaikan tipe data dalam dataset yang kesemuanya numerik, dan kesemua fitur X saling terikat untuk menghasilkan output y.
 Jadi, secara keseluruhan, step yang dilakukan di sini adalah:
 ```
 [Data] --> [Cleaning] --> [Split] --> [Normalisasi] --> o
-o --> [Corr] --> Loop([Model] --> [Metrics] --> [Tuning]) --> Reporting
+o --> Loop([Model] --> [Metrics] --> [Tuning]) --> [Reporting]
 ```
 ---
 
