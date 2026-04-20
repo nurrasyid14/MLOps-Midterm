@@ -151,7 +151,7 @@ python manuals_run.py
 ```
 
 ![AutoML Result](results/automl/20260419_221928_pred_vs_actual.png)
-![AutoML Result](results/automl/20260419_221928_pred_vs_actual.png)
+![AutoML Result](results/automl/20260419_221928_residuals.png)
 
 #### **Analisis**
 
