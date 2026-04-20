@@ -410,10 +410,10 @@ PyCaret akan sangat berguna swbagai alat "overview", karena ia akan memilihkan a
 
 Mengenai Algoritma -- Light Gradient Boosting Machine Regression & Ridge Regression:
 
-- **Light Gradient Boosting Machine Regression**
-  Regresi ini didasarkan pada decision tree, sehingga secara teknis, LightGBM adalah suatu algoritma Ensemble yang terlebih dahulu mengklasifikasikan data, dan barulah melakukan regresi terhadap data dari ranting ranting yang ada untuk men-generalisasi.  
-- **Ridge Regression**
-  Regresi Ridge mengaplikasikan penalti pada koefisien, dimana dalam pembelajaran, model memerlukan bias untuk men-generalisasi, melalui variabel alpha.
+- **Light Gradient Boosting Machine Regression:**
+   didasarkan pada decision tree, sehingga secara teknis, LightGBM adalah suatu algoritma Ensemble yang terlebih dahulu mengklasifikasikan data, dan barulah melakukan regresi terhadap data dari ranting ranting yang ada untuk men-generalisasi.  
+- **Ridge Regression:**
+   mengaplikasikan penalti pada koefisien, dimana dalam pembelajaran, model memerlukan bias untuk men-generalisasi, melalui variabel alpha.
   Variabel Alpha : Tingkat penyusutan koefisien (bias) pada model yang saya bangun adalah 0.14384498882876628 yang dimana dalam tingkat itu merupakan tingkat penyusutan terbaik bagi model. Maksudnya adalah bahwa koefisien menyusut sebesar 14%, porsi yang ideal karena variansi masih dapat dikatakan besar.
 ## **Detail Presentasi**
 ``` sequence
